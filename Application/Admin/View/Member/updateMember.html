@@ -1,0 +1,74 @@
+<include file="Public:header" />
+	<!--显示添加设备的表单-->
+	<div class="container">
+		<div class="col-sm-12 heading">修改信息</div>
+		<br>
+		<br>
+			<form class="form-horizontal" role="form" method="post" action="<{:U('Member/doUpdateMember')}>">
+				<div class="form-group">
+					<label for="id" class="col-md-2 control-label">编　　号</label>
+					<div class="col-md-9">
+						<input type="text" class="form-control" id="id" name="id" placeholder="由系统自动分配" readonly="readonly" value="<{$data.id}>">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="name" class="col-md-2 control-label">姓　　名</label>
+					<div class="col-md-9">
+						<input type="text" class="form-control" id="name" name="name" placeholder="姓名(不能为空)" value="<{$data.name}>">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="name" class="col-md-2 control-label">班　　级</label>
+					<div class="col-md-9">
+						<input type="text" class="form-control" id="class1" name="class1" placeholder="班级(不能为空)" value="<{$data.class1}>">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="name" class="col-md-2 control-label">类　　别</label>
+					<div class="col-md-9">
+						<input type="text" class="form-control" id="other" name="other" placeholder="类别" value="<{$data.other}>">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="rules" class="col-md-2 control-label">值班时间</label>
+					<div class="col-md-9">
+						<input type="text" class="form-control" id="rules" name="rules" placeholder="示例：08:30-10:30, 10:30-13:30, 13:30-15:30, 15:30-18:00, 18:00-20:00" value="<{$data.rules}>">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="limit_count" class="col-md-2 control-label">值班次数</label>
+					<div class="col-md-9">
+						<input type="text" class="form-control" id="limit_count" name="limit_count" placeholder="-1或留空表示不限次数, 0表示不能安排" value="<{$data.limit_count}>">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="description" class="col-md-2 control-label">备　　注</label>
+					<div class="col-md-9">
+						<input type="text" class="form-control" id="description" name="description" placeholder="备注 (可以为空)" value="<{$data.description}>">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="description" class="col-md-2 control-label">电　　话</label>
+					<div class="col-md-9">
+						<input type="text" class="form-control" id="phone" name="phone" placeholder="电话 (不可以为空)" value="<{$data.phone}>">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="description" class="col-md-2 control-label">邮　　箱</label>
+					<div class="col-md-9">
+						<input type="text" class="form-control" id="email" name="email" placeholder="邮箱 (不可以为空)" value="<{$data.email}>">
+					</div>
+				</div>
+				<br/>
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-10">
+						<button class="btn btn-primary btn-md col-md-5" name="modify" onclick="javascript:history.back()">取消</button>
+						<span class="col-md-1"></span>
+						<button type="submit" class="btn btn-success btn-md col-md-5" name="modify">确认修改</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+<include file="Public:footer" />

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="__PUBLIC__/Common/css/bootstrap-theme.min.css">
+    <link type="text/css" rel="stylesheet" href="__PUBLIC__/Common/css/bootstrap.min.css">
+    <!--[if lt IE 9]>
+    <script src="__PUBLIC__/Common/js/html5shiv.min.js"></script>
+    <script src="__PUBLIC__/Common/js/respond.min.js"></script>
+    <![endif]-->
+    <script src="__PUBLIC__/Common/js/jquery.min.js"></script>
+    <script src="__PUBLIC__/Common/js/bootstrap.min.js"></script>
+    <!-- <script src="__PUBLIC__/Common/js/bootstrap-wysiwyg.js"></script>
+    <script src="__PUBLIC__/Common/js/jquery.hotkeys.js" type="text/javascript"></script> -->
+    <link type="text/css" rel="stylesheet" href="__PUBLIC__/Admin/css/style.css">
+    <link type="text/css" rel="stylesheet" href="__PUBLIC__/Common/css/multiple-select.css" />
+    <link type="text/css" rel="stylesheet" href="__PUBLIC__/Common/css/style.css">
+    <!-- <link type="text/css" rel="stylesheet" href="__PUBLIC__/Common/css/bootstrap-combined.no-icons.min.css">
+    <link type="text/css" rel="stylesheet" href="__PUBLIC__/Common/css/bootstrap-responsive.min.css">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet"> -->
+    <title>{$title}</title>
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="__ROOT__"><img src="__PUBLIC__/Home/img/logo.png" style="width:200px height:44.8px"></a>
+                </div>
+
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li <eq name="title" value="设备管理">class="active"</eq>><a href="{:U('Device/device_list')}">预约设备管理</a></li>
+                        <li <eq name="title" value="添加设备">class="active"</eq>><a href="{:U('Device/device_editor')}">添加预约设备</a></li>
+                        <li <eq name="title" value="科研场地">class="active"</eq>><a href="{:U('Device/device_list')}">科研场地</a></li>
+                        <li <eq name="title" value="仪器设备">class="active"</eq>><a href="{:U('Device/device_list')}">仪器设备</a></li>
+                        <li <eq name="title" value="低值易耗品">class="active"</eq>><a href="{:U('Device/device_editor')}">低值易耗品</a></li>
+                        <li <eq name="title" value="用户管理">class="active"</eq>><a href="{:U('User/user_list')}">用户管理</a></li>
+                        <li <eq name="title" value="权限管理">class="active"</eq>><a href="{:U('Permission/permission_list')}">权限管理</a></li>
+                        <li <eq name="title" value="公告管理">class="active"</eq>><a href="{:U('Bulletin/bulletin_list')}">公告管理</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li <eq name="title" value="设置">class="active"</eq>><a href="{:U('Setting/setting_list')}">设置</a></li>
+                        <li><a><?php echo session('valid_user');?></a></li>
+                        <li><a href="{:U('Admin/logout')}">退出</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>

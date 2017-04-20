@@ -1,0 +1,157 @@
+<include file="Public:header" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/Common/css/bootstrap-theme.min.css">
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/Common/css/bootstrap.min.css">
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/Common/css/bootstrap-datetimepicker.css" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/Common/css/bootstrap-datetimepicker.min.css" />
+<script src="__PUBLIC__/Common/js/bootstrap-datetimepicker.min.js"></script>
+<script src="__PUBLIC__/Common/js/bootstrap-datetimepicker.js"></script>
+<script src="__PUBLIC__/Common/js/bootstrap-datetimepicker.zh-CN.js "></script> 
+<script src="__PUBLIC__/Common/js/jquery-1.8.3.min.js" charset="UTF-8"></script>
+	<div class="container">
+		<div class="col-md-offset-10 col-md-10">
+			<button class="btn btn-primary btn-md col-md-2" name="modify" onclick="javascript:displayForm1()">添加事务</button>
+		</div>
+		<br>
+
+		<div class="container" id="bulletin_add_form" style="display:none;">
+			<br/>
+			<form class="form-horizontal" name="bulletin_form" method="post" action="__URL__/addMatter">
+				<div class="form-group">
+					<label for="date" class="control-label col-sm-1">值班日期</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="date" name="date" placeholder="添加值班日期">
+					</div>
+				</div>
+				<div class="form-group">
+					<laber for="address" class="control-label col-sm-1">值班地点</laber>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="address" name="address" placeholder="添加值班地点">
+					</div>
+				</div>
+				<div class="form-group">
+					<laber for="period" class="control-label col-sm-1">时间段</laber>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="period" name="period" placeholder="添加时间段">
+					</div>
+				</div>
+				<div class="col-md-offset-2 col-md-10">
+					<div class="col-md-10">
+						<button type="submit" class="btn btn-primary btn-md btn-block" name="add_user" id="saveContent">添加</button>
+					</div>
+				</div>
+			</form>
+		</div>
+		<br>
+		<script>
+            var flag=true;
+            function displayForm1()
+            {
+                var div=document.getElementById("bulletin_add_form");
+                if(flag)	div.style.display="block";
+                else	div.style.display="none";
+                flag=!flag;
+            }
+            function displayForm() {
+				var div=document.getElementById("hahaha");
+				if (flag) div.style.display="block";
+				else div.style.display="none";
+				flag=!flag;
+            }
+		</script>
+    	<div class="input-group date form_date col-md-3" data-date="" data-date-format="" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+      		<input class="form-control" size="16" type="text" value="" readonly>
+  			<span class="input-group-addon">
+  				<span class="glyphn目录下有两个文件 Phpticon glyphicon-remove"></span>
+  			</span>
+     		<span class="input-group-addon">
+     			<span class="glyphicon glyphicon-calendar"></span>
+     		</span>
+ 		</div>
+		<br><br>
+
+		<!--注意四层嵌套volist标签的问题-->
+		<!--<?php-->
+			<!--global $val;-->
+			<!--$val = 0;-->
+		<!--?>-->
+		<php>
+
+		</php>
+		<volist name="all_the_rules" id="someitems">
+			<table class="table table-hover table-bordered table-striped">
+				<caption>值班地点：<{$someitems.address}></caption>
+				<tr>
+					<td class="col-sm-2">值班日期 or 时间段</td>
+					<volist name="someitems['date']" id="value">
+						<td><{$value}></td>
+					</volist>
+				</tr>
+				<volist name="someitems['period']" id="value">
+					<tr class="success">
+						<td><{$value}></td>
+						<volist name="someitems['date']" id="value0">
+							<td>
+								<form action="__URL__/doSet" method="post">
+								<select class="input-small" id="getFormselect" name="select_device" onchange="deviceChanged()">
+									<php>
+										for($i = 0; $i < $all_setted_count; $i++) {
+											if($all_setted[$i]['period'] == $value && $all_setted[$i]['date'] == $value0 && all_setted[$i]['address'] == $someitems['address']) {
+												$hahaha = $all_setted[$i]['name'];
+												$hehehe = $all_setted[$i]['select_device'];
+									</php>
+												<option value="<{$hehehe}>"><{$hahaha}></option>
+									<php>
+											} else {
+									</php>
+												<option value="0">---</option>
+									<php>
+											}
+										}
+									</php>
+									<volist name="name" id="item">
+										<option value="<{$item.id}>"><{$item.name}></option>
+									</volist>
+								</select>
+								<input type="text" value="<{$value}>" id="getFormPeriod" name="period" hidden>
+								<input type="text" value="<{$value0}>" id="getFormDate" name="date" hidden>
+								<input type="text" value="<{$someitems.address}>" id="getFormaddress" name="address" hidden>
+								<!--采用ajax方式提交表单数据并且及时刷新-->
+								<!--<script type="text/javascript">-->
+									<!--$('#formSumbit').click(function () {-->
+										<!--var params = {-->
+											<!--select_device:$('#getFormselect').val(),-->
+											<!--period:$('#getFormPeriod').val(),-->
+											<!--date:$('#getFormDate').val(),-->
+											<!--address:$('#getFormaddress').val()-->
+										<!--};-->
+										<!--$.ajax({-->
+											<!--url: '__URL__/doSet',-->
+											<!--type: 'POST',-->
+											<!--dataType: 'json',-->
+											<!--data: params,-->
+											<!--success: function(data){-->
+												<!--console.log(data);-->
+												<!--window.location.href="__APP__/Admin/Index/index";-->
+											<!--},-->
+											<!--error: function(xhr){-->
+												<!--console.log(xhr);-->
+											<!--}-->
+										<!--});-->
+									<!--});-->
+								<!--</script>-->
+									<button class="btn btn-primary" type="submit" id="formSumbit<?php echo $val;?>">安排</button>
+								</form>
+							</td>
+						</volist>
+					</tr>
+				</volist>
+			</table>
+		</volist>
+		<div class="col-md-1">
+
+		</div>
+	</div>
+
+
+
+ <include file="Public:footer" />

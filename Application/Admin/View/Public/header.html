@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="__PUBLIC__/Common/css/bootstrap-theme.min.css">
+    <link type="text/css" rel="stylesheet" href="__PUBLIC__/Common/css/bootstrap.min.css">
+    <script src="__PUBLIC__/Common/js/jquery.min.js"></script>
+    <script src="__PUBLIC__/Common/js/bootstrap.min.js"></script>
+    <link rel="shortcut icon" href="__ROOT__/logo.ico" type="image/x-icon" />
+    <link type="text/css" rel="stylesheet" href="__PUBLIC__/Admin/css/style.css">
+    <link type="text/css" rel="stylesheet" href="__PUBLIC__/Common/css/multiple-select.css" />
+    <link type="text/css" rel="stylesheet" href="__PUBLIC__/Common/css/style.css">
+    <title><{$title}></title>
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="__ROOT__"><img src="__PUBLIC__/Home/img/logo.png" style="width:200px height:44.8px"></a>
+                </div>
+
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li <eq name="title" value="安排值班">class="active"</eq>><a href="<{:U('Index/index')}>">安排值班</a></li>
+                        <li <eq name="title" value="添加人员">class="active"</eq>><a href="<{:U('Member/addMember')}>">添加人员</a></li>
+                        <li <eq name="title" value="值班概览">class="active"</eq>><a href="<{:U('Manage/index')}>">值班概览</a></li>
+                        <li <eq name="title" value="联系方式">class="active"</eq>><a href="<{:U('Member/contact')}>">联系方式</a></li>
+                        <li <eq name="title" value="公告管理">class="active"</eq>><a href="<{:U('Information/index')}>">公告管理</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li <eq name="title" value="设置">class="active"</eq>><a href="{:U('Setting/setting_list')}">设置</a></li>
+                        <li><a><?php echo session('valid_user');?></a></li>
+                        <li><a href="{:U('Admin/logout')}">退出</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>

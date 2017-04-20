@@ -1,0 +1,143 @@
+<include file="Public:header" />
+	<!--显示折叠按钮 -->
+	<div class="container">
+		<div class="col-md-offset-11">
+			<a href="#">
+				<img src="__PUBLIC__/Admin/imgs/add.png" style="cursor:hand;" alt="addinformation" title="创建公告" onclick="javascript:displayForm()">
+			</a>
+		</div>
+	</div>
+	<!--添加公告-->
+	<div class="container" id="bulletin_add_form" style="display:none;">
+		<div class="col-sm-12 heading">add information</div> <br> <br>
+        <textarea class="form-control" rows="1" id="title" name="title" placeholder="Please input the title..."></textarea> <br>
+        <script id='container' name='content' type="text/plain" style="height:500px;width:100%">Please input the information...</script>
+        <script src="__ROOT__/Public/Js/jquery-3.1.1.min.js"></script>
+        <!--配置文件-->
+        <script type="text/javascript" src="__PUBLIC__/Ueditor/ueditor.config.js"></script>
+        <!--编译器源码文件-->
+        <script type="text/javascript" src="__PUBLIC__/Ueditor/ueditor.all.js"></script>
+        <!--实例化编译器-->
+        <script type="text/javascript">
+            $(function(){
+                var ue = UE.getEditor('container');
+                $('#getContent').click(function(){
+                    var html = ue.getContent();
+                    alert(html);
+                });
+
+                $('#saveContent').click(function(){
+                    var html = ue.getContent();
+                    var param = {
+                        title: $("#title").val(),
+                        content: html
+                    };
+                    $.ajax({
+                        url: '__URL__/doAddInformation',
+                        type: 'POST',
+                        dataType: 'json',
+                        data: param,
+                        success: function(data){
+                            console.log(data);
+                            window.location.href="__APP__/Admin/Information/index";
+                        },
+                        error: function(xhr){
+                            console.log(xhr);
+                        }
+                    });
+                });
+            });
+            </script>
+            <div class="form-group">
+				<br/>
+				<div class="col-md-12">
+					<button type="submit" class="btn btn-success btn-md btn-block" name="add_user" id="getContent">获取内容</button>
+				</div>
+			</div><br>
+            <div class="form-group">
+				<br/>
+				<div class="col-md-12">
+					<button type="submit" class="btn btn-success btn-md btn-block" name="add_user" id="saveContent">保存</button>
+				</div>
+			</div>
+
+
+	</div>
+	<script>
+		var flag=true;
+		function displayForm()
+		{
+			var div=document.getElementById("bulletin_add_form");
+			if(flag)	div.style.display="block";
+			else	div.style.display="none";
+			flag=!flag;
+		}
+		$(function() {
+			$('#ms1').change(function() {
+				console.log($(this).val());
+			}).multipleSelect({
+				width: '100%'
+			});
+		});
+		$(function() {
+			$('#ms2').change(function() {
+				console.log($(this).val());
+			}).multipleSelect({
+				width: '100%'
+			});
+		});
+	</script>
+	<br/>
+	<!--显示公告列表-->
+	<div class="container">
+		<div class="bulletin_list">
+			<div class="col-sm-12 heading">公告管理</div>
+			<br/>
+			<table class="table table-bordered">
+				<colgroup>
+					<col width="10%">
+					<col width="20%">
+					<col width="">
+					<col width="10%">
+					<col width="5%">
+					<col width="5%">
+				</colgroup>
+				<thead class="table-head">
+					<tr>
+						<td>userid</td>
+						<td>tile</td>
+						<td>content</td>
+						<td>date</td>
+						<td>delete</td>
+						<td>update</td>
+				</thead>
+				<tbody>
+					<volist name="data" id="vo" mod="2">
+					<tr <eq name="mod" value="1"> class="odd" </eq>>
+						<!-- <td title="<{$item.username}>">{$item.realname}</td> -->
+						<td>111</td>
+						<td><{$vo.title}></td>
+						<td><{$vo.content}></td>
+						<td><{$vo.date}></td>
+						<td>
+							<a href="__URL__/deleteInformation/id/<{$vo.id}>">
+								<img src="__PUBLIC__/Admin/imgs/delete.png" width="20px" height="20px" alt="delete">
+							</a>
+						</td>
+						<td>
+							<a href="__URL__/updateInformation/id/<{$vo.id}>">
+								<img src="__PUBLIC__/Admin/imgs/edit.png" width="20px" height="20px" alt="update">
+							</a>
+						</td>
+					</tr>
+					</volist>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="container">
+		<div class="pagesplit" style="colspan:3 bgcolor:#FFF">
+			<{$page}>
+		</div>
+	</div>
+<include file="Public:footer" />

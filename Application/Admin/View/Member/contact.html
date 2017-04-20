@@ -1,0 +1,56 @@
+<include file="Public:header" />
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/Admin/css/contact.css">
+	<!--显示公告列表-->
+	<div class="container">
+		<div class="bulletin_list">
+			<div class="col-sm-12 heading">联系方式</div>
+			<br/> <br>
+			<table class="table table-bordered">
+				<colgroup>
+					<col width="20%">
+					<col width="20%">
+					<col width="20%">
+					<col width="20%">
+					<col width="10%">
+					<col width="10%">
+				</colgroup>
+				<thead class="table-head">
+					<tr>
+						<td class="member-contact">姓　　名</td>
+						<td class="member-contact">电　　话</td>
+						<td class="member-contact">邮　　箱</td>
+						<td class="member-contact">班　　级</td>
+						<td class="member-contact">修　　改</td>
+						<td class="member-contact">删　　除</td>
+					</tr>
+				</thead>
+				<tbody>
+					<volist name="data" id="vo" mod="2">
+					<tr <eq name="mod" value="1"> class="odd" </eq>>
+						<!-- <td title="<{$item.username}>">{$item.realname}</td> -->
+						<td class="member-contact"><{$vo.name}></td>
+						<td class="member-contact"><{$vo.phone}></td>
+						<td class="member-contact"><{$vo.email}></td>
+						<td class="member-contact"><{$vo.class1}></td>
+						<td class="member-contact">
+							<a href="__URL__/updateMember/id/<{$vo.id}>">
+								<img src="__PUBLIC__/Admin/imgs/edit.png" width="20px" height="20px" alt="update">
+							</a>
+						</td>
+						<td class="member-contact">
+							<a href="__URL__/deleteMember/id/<{$vo.id}>">
+								<img src="__PUBLIC__/Admin/imgs/delete.png" width="20px" height="20px" alt="delete">
+							</a>
+						</td>
+					</tr>
+					</volist>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="container">
+		<div class="pagesplit" style="colspan:3 bgcolor:#FFF">
+			<{$page}>
+		</div>
+	</div>
+<include file="Public:footer" />
